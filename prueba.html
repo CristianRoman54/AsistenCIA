@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AsistenCIA - Innova Tec</title>
+    <style>
+        /* ===== RESET Y CONFIGURACIÓN BÁSICA ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* ===== ESTILOS GLOBALES DEL BODY ===== */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            /* Fondo con gradiente principal de la página */
+            background: linear-gradient(85deg, #ff9500 , #ff0000 90%);
+            
+        }
+
+        /* ===== CONTENEDOR PRINCIPAL ===== */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* ===== HEADER/NAVEGACIÓN ===== */
+        header {
+            /* Efecto de vidrio translúcido */
+            background: rgba(255, 255, 255, 0.899);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            /* Header fijo al hacer scroll */
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            /* Sombra sutil */
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* ===== LOGO ===== */
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        /* Contenedor del icono del logo */
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        /* Imagen del logo */
+        .logo-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 12px;
+        }
+
+        /* Texto principal del logo */
+        .logo h1 {
+            color: #333;
+            font-size: 28px;
+            font-weight: 700;
+        }
+
+        /* Subtítulo del logo */
+        .logo-subtitle {
+            font-size: 14px;
+            color: #666;
+            margin-top: -5px;
+        }
+
+        /* ===== NAVEGACIÓN ===== */
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 8px 16px;
+            border-radius: 8px;
+        }
+
+        /* Efecto hover en enlaces de navegación */
+        nav a:hover {
+            background: linear-gradient(45deg, #ff0000, #ff9500);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* ===== SECCIÓN HERO ===== */
+        .hero {
+            text-align: center;
+            padding: 80px 0;
+            color: white;
+        }
+
+        .hero h2 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 40px;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease 0.3s both;
+        }
+
+        /* ===== BOTÓN CALL-TO-ACTION ===== */
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(10deg, #ff0000, #ff9500);
+            color: white;
+            padding: 15px 40px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.607);
+            animation: fadeInUp 1s ease 0.6s both;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(255, 255, 255, 0.6);
+        }
+
+        /* ===== SECCIONES GENERALES ===== */
+        .section {
+            padding: 80px 0;
+        }
+
+        /* Sección con fondo blanco */
+        .white-section {
+            background: white;
+        }
+
+        /* Sección con fondo gris claro */
+        .gray-section {
+            background: #f8f9fa;
+        }
+
+        /* ===== TÍTULOS DE SECCIÓN ===== */
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 60px;
+            color: #333;
+            position: relative;
+        }
+
+        /* Línea decorativa bajo el título */
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 250px;
+            height: 4px;
+            background: linear-gradient(50deg, #ff0000, #ff9900);
+            border-radius: 2px;
+        }
+
+        /* ===== GRID DE CARACTERÍSTICAS ===== */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        /* ===== TARJETAS DE CARACTERÍSTICAS ===== */
+        .feature-card {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            border: 1px solid #f0f0f0;
+        }
+
+        /* Efecto hover en tarjetas */
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+        }
+
+        /* Iconos de las características */
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+            background: linear-gradient(45deg, #ff0000, #ff9900);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            color: white;
+        }
+
+        /* Títulos de las tarjetas */
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        /* Texto descriptivo de las tarjetas */
+        .feature-card p {
+            color: #666;
+            line-height: 1.8;
+        }
+
+        /* ===== SECCIÓN DE DONACIONES ===== */
+        .donation-section {
+            background: linear-gradient(135deg, #ff9900e8 0%, #ff0000ea 100%);
+            color: white;
+            text-align: center;
+        }
+
+        /* Grid de tarjetas de donación */
+        .donation-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        /* ===== TARJETAS DE DONACIÓN ===== */
+        .donation-card {
+            /* Efecto de vidrio translúcido */
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 40px 20px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .donation-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        /* Cantidad de donación */
+        .donation-amount {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        /* Descripción de la donación */
+        .donation-description {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        /* Botones de donación */
+        .donate-btn {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 2px solid white;
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .donate-btn:hover {
+            background: white;
+            color: #ff0000;
+        }
+
+        /* ===== SECCIÓN ACERCA DE ===== */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .about-text {
+          text-align: justify;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #000000;
+        }
+
+        .about-image {
+            text-align: center;
+        }
+
+        /* Showcase tecnológico */
+        .tech-showcase {
+            width: 100%;
+            max-width: 400px;
+            height: 400px;
+            background-image:url("logo4.png");
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 4rem;
+            margin: 0 auto;
+
+            
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: #000000;
+            color: white;
+            text-align: center;
+            padding: 40px 0;
+        }
+
+        /* ===== CANTIDAD PERSONALIZADA ===== */
+        .custom-amount {
+            margin-top: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        .amount-input {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .amount-input input {
+            padding: 12px 20px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-size: 1.1rem;
+            width: 150px;
+            text-align: center;
+        }
+
+        .amount-input input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* ===== ANIMACIONES ===== */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ===== RESPONSIVE DESIGN ===== */
+        @media (max-width: 768px) {
+            .hero h2 {
+                font-size: 2.5rem;
+            }
+            
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            .header-content {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            nav ul {
+                gap: 15px;
+            }
+            
+            .amount-input {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ===== HEADER/BARRA DE NAVEGACIÓN ===== -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <!-- LOGO: Sección del logotipo de la empresa -->
+                <div class="logo">
+                    <!-- Contenedor del icono del logo - cambiar src por la ruta de tu logo -->
+                    <div class="logo-icon">
+                        <img src="LOGO WEB.png" alt="AsistenCIA Logo">
+                    </div>
+                    <!-- Texto del logo con nombre y subtítulo -->
+                    <div>
+                        <h1>AsistenCIA</h1>
+                        <div class="logo-subtitle">Innova Tec</div>
+                    </div>
+                </div>
+                <!-- NAVEGACIÓN: Menú principal -->
+                <nav>
+                    <ul>
+                        <li><a href="#inicio">Inicio</a></li>
+                        <li><a href="#proyecto">Proyecto</a></li>
+                        <li><a href="#donaciones">Donaciones</a></li>
+                        <li><a href="#contacto">Contacto</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- ===== SECCIÓN HERO (PORTADA) ===== -->
+    <section id="inicio" class="hero">
+        <div class="container">
+            <h2>AsistenCIA</h2>
+            <p>Revolucionando la asistencia mediante tecnológica QR</p>
+            <a href="#donaciones" class="cta-button">Apoya Nuestro Proyecto</a>
+        </div>
+    </section>
+
+    <!-- ===== SECCIÓN PROYECTO ===== -->
+    <section id="proyecto" class="section white-section">
+        <div class="container">
+            <h2 class="section-title">Nuestro Proyecto</h2>
+            <div class="about-content">
+                <!-- Texto descriptivo del proyecto -->
+                <div class="about-text">
+                    <p>AsistenCIA es un proyecto innovador desarrollado por estudiantes del Innova Tec, diseñado para revolucionar la forma en que las personas acceden a asistencia personalizada mediante tecnológica QR.
+
+Es un sistema tecnológico de Control Inteligente de Asistencia (CIA) que utiliza códigos QR personalizados en las credenciales estudiantiles para registrar de forma rápida, segura y automatizada la asistencia de los alumnos.
+
+El sistema ofrece un método moderno, seguro y automatizado para registrar la presencia de los estudiantes, reduciendo errores humanos, eliminando registros manuales y fomentando la puntualidad.
+
+Además, al digitalizar completamente el proceso de asistencia, contribuye activamente al cuidado del medio ambiente, ya que disminuye significativamente el uso de papel y materiales impresos, promoviendo prácticas sostenibles dentro de las instituciones educativas.</p>
+</div>
+                <!-- Imagen/visualización del proyecto -->
+                <div class="about-image">
+                    <div class="tech-showcase"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== SECCIÓN CARACTERÍSTICAS ===== -->
+    <section class="section gray-section">
+        <div class="container">
+            <h2 class="section-title">Características Principales</h2>
+            <div class="features-grid">
+                <!-- Tarjeta 1: IA Avanzada -->
+                <div class="feature-card">
+                    <div class="feature-icon">🧠</div>
+                    <h3>Tecnologia Avanzada</h3>
+                    <p>Escaneo rápido mediante dispositivos móviles o lectores QR.</p>
+                </div>
+                <!-- Tarjeta 2: Respuesta Rápida -->
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Respuesta Rápida</h3>
+                    <p>Sistema optimizado para ofrecer asistencia instantánea las 24 horas del día, los 7 días de la semana.</p>
+                </div>
+                <!-- Tarjeta 3: Personalización -->
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h3>Versatilidad</h3>
+                    <p>Fácil implementación en eventos, clases o actividades extracurriculares.</p>
+                </div>
+                <!-- Tarjeta 4: Seguridad -->
+                <div class="feature-card">
+                    <div class="feature-icon">🔒</div>
+                    <h3>Seguridad</h3>
+                    <p>Protección avanzada de datos y privacidad del usuario con los más altos estándares de seguridad.</p>
+                </div>
+                <!-- Tarjeta 5: Multiplataforma -->
+                <div class="feature-card">
+                    <div class="feature-icon">📱</div>
+                    <h3>Multiplataforma</h3>
+                    <p>Accesible desde cualquier dispositivo: computadora, tablet o smartphone.</p>
+                </div>
+                <!-- Tarjeta 6: Escalabilidad -->
+                <div class="feature-card">
+                    <div class="feature-icon">🌍</div>
+                    <h3>Escalabilidad</h3>
+                    <p>Diseñado para crecer y adaptarse a las necesidades de una base de usuarios en expansión.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== SECCIÓN DONACIONES ===== -->
+    <section id="donaciones" class="section donation-section">
+        <div class="container">
+            <h2 class="section-title" style="color: white;">Apoya Nuestro Proyecto</h2>
+
+            <p style="font-size: 1.2rem; margin-bottom: 20px; opacity: 0.9;">Tu contribución nos ayuda a seguir innovando y mejorando AsistenCIA</p>
+            <p style="font-size: 1.2rem; margin-bottom: 20px; opacity: 0.9;">Recuerda que cada peso cuenta para hacer la diferencia.</p>
+            <!-- Grid de opciones de donación -->
+            <div class="donation-cards">
+                <!-- Donación de $20 -->
+                <div class="donation-card">
+                    <div class="donation-amount">$20</div>
+                    <div class="donation-description">"Semilla de Cambio"<br>¡Gracias! Cada aporte cuenta.</div>
+                    <a href="https://mpago.li/24yvERD" class="donate-btn" target="_blank">Donar Ahora</a>
+                </div>
+                <!-- Donación de $50 -->
+                <div class="donation-card">
+                    <div class="donation-amount">$50</div>
+                    <div class="donation-description">"Aliado Innova"<br>Eres parte del cambio. ¡Gracias!</div>
+                    <a href="https://mpago.li/1AE7Azd" class="donate-btn" target="_blank">Donar Ahora</a>
+                </div>
+                <!-- Donación de $100 -->
+                <div class="donation-card">
+                    <div class="donation-amount">$100</div>
+                    <div class="donation-description">"Impulsor Digital"<br>Tu apoyo impulsa ideas. ¡Gracias!🙌</div>
+                    <a href="https://mpago.li/1fPdbNZ" class="donate-btn" target="_blank">Donar Ahora</a>
+                </div>
+                <!-- Donación de $200 -->
+                <div class="donation-card">
+                    <div class="donation-amount">$200</div>
+                    <div class="donation-description">"Chispa de Innovación"<br>¡Encendiste una chispa! ¡Gracias!🔥</div>
+                     <a href="https://mpago.li/2do5WSL" class="donate-btn" target="_blank">Donar Ahora</a>
+                </div>
+            </div>
+
+            <!-- Sección de cantidad personalizada -->
+            <div class="custom-amount">
+                <h3>Cantidad Personalizada</h3>
+                <p>¿Prefieres donar una cantidad diferente?</p>
+                <div class="amount-input">
+                    <input type="number" id="customAmount" placeholder="Ingresa cantidad" min="1">
+                    <a href="https://link.mercadopago.com.mx/asistenciainnovatec" class="donate-btn" target="_blank">Donar</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer id="contacto">
+        <div class="container">
+            <h3>AsistenCIA - Innova Tec - ITSCO</h3>
+            <p>Contacto: asistencia@innovatec.edu | Tel: (555) 123-4567</p>
+            <p>&copy; 2025 AsistenCIA. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- ===== JAVASCRIPT ===== -->
+    <script>
+        // ===== NAVEGACIÓN SUAVE =====
+        // Permite que los enlaces internos se desplacen suavemente a sus secciones
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // ===== FUNCIONES DE DONACIÓN =====
+        // Maneja las donaciones con cantidades predefinidas
+        function handleDonation(amount) {
+            alert(`¡Gracias por tu interés en donar ${amount} pesos! \n\nPara proceder con la donación, por favor contacta a:\n📧 asistencia@innovatec.edu\n📱 (555) 123-4567\n\nTu apoyo es fundamental para el éxito de AsistenCIA.`);
+        }
+
+        // Maneja las donaciones con cantidad personalizada
+        function handleCustomDonation() {
+            const amount = document.getElementById('customAmount').value;
+            if (amount && amount > 0) {
+                alert(`¡Gracias por tu interés en donar ${amount} pesos! \n\nPara proceder con la donación, por favor contacta a:\n📧 asistencia@innovatec.edu\n📱 (555) 123-4567\n\nTu apoyo es fundamental para el éxito de AsistenCIA.`);
+                document.getElementById('customAmount').value = '';
+            } else {
+                alert('Por favor ingresa una cantidad válida.');
+            }
+        }
+
+        // ===== ANIMACIONES AL HACER SCROLL =====
+        // Configuración del observador de intersección
+        const observerOptions = {
+            threshold: 0.1, // Se activa cuando el 10% del elemento es visible
+            rootMargin: '0px 0px -50px 0px' // Margen inferior de 50px
+        };
+
+        // Crear el observador para animaciones
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // Hacer visible el elemento con animación
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // ===== APLICAR ANIMACIONES =====
+        // Aplicar animaciones a las tarjetas cuando aparecen en pantalla
+        document.querySelectorAll('.feature-card, .donation-card').forEach(card => {
+            // Estado inicial: invisible y desplazado hacia abajo
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'all 0.6s ease';
+            // Observar el elemento para animarlo cuando sea visible
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>
